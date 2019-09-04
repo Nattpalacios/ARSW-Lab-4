@@ -47,7 +47,14 @@ public class BlueprintsServices {
      * @throws BlueprintNotFoundException if there is no such blueprint
      */
     public Blueprint getBlueprint(String author,String name) throws BlueprintNotFoundException{
-        throw new UnsupportedOperationException("Not supported yet."); 
+    	Blueprint bp = null;
+    	final Map<Tuple<String,String>,Blueprint> blueprints = memo.getHash();
+    	for (int i = 0; i < blueprints.size(); i++) {
+    		if(blueprints.get(i).getAuthor().equals(author) && blueprints.get(i).getName().equals(name)) {
+				bp = blueprints.get(i);
+			}
+    	}
+		return bp;
     }
     
     /**
@@ -57,15 +64,15 @@ public class BlueprintsServices {
      * @throws BlueprintNotFoundException if the given author doesn't exist
      */
     public Set<Blueprint> getBlueprintsByAuthor(String author) throws BlueprintNotFoundException{
-    	/*final Map<Tuple<String,String>,Blueprint> blueprints = memo.getHash();
+    	//CREAR SET
+    	final Map<Tuple<String,String>,Blueprint> blueprints = memo.getHash();
     	for(int i = 0; i < blueprints.size(); i++) {
-    		if() {
-    			
+    		if(blueprints.get(i).getAuthor().equals(author)) {
+    			//AGREGAR AL SET
     		}
-    	}*/
+    	}
     	
-    	
-    	
+    	//RETORNAR SET
         throw new UnsupportedOperationException("Not supported yet."); 
     }
     
