@@ -13,6 +13,8 @@ import edu.eci.arsw.blueprints.persistence.BlueprintsPersistence;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author hcadavid

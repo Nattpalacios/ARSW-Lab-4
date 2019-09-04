@@ -31,8 +31,6 @@ public class BlueprintsServices {
     @Autowired
     InMemoryBlueprintPersistence memo = null;
     
-    Blueprint bluep;
-    
     public void addNewBlueprint(Blueprint bp){
         
     }
@@ -65,6 +63,9 @@ public class BlueprintsServices {
     			
     		}
     	}*/
+    	
+    	
+    	
         throw new UnsupportedOperationException("Not supported yet."); 
     }
     
