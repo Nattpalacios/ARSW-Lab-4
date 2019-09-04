@@ -17,6 +17,7 @@ import java.util.Map;
  *
  * @author hcadavid
  */
+@Service
 public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
 
     private final Map<Tuple<String,String>,Blueprint> blueprints=new HashMap<>();
@@ -44,6 +45,8 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
         return blueprints.get(new Tuple<>(author, bprintname));
     }
 
-    
+    public Map<Tuple<String, String>, Blueprint> getHash() {
+    	return blueprints;
+    }
     
 }

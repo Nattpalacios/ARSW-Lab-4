@@ -9,6 +9,9 @@ import edu.eci.arsw.blueprints.model.Blueprint;
 import edu.eci.arsw.blueprints.model.Point;
 import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
 import edu.eci.arsw.blueprints.persistence.BlueprintsPersistence;
+import edu.eci.arsw.blueprints.persistence.impl.InMemoryBlueprintPersistence;
+import edu.eci.arsw.blueprints.persistence.impl.Tuple;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -24,6 +27,11 @@ public class BlueprintsServices {
    
     @Autowired
     BlueprintsPersistence bpp=null;
+    
+    @Autowired
+    InMemoryBlueprintPersistence memo = null;
+    
+    Blueprint bluep;
     
     public void addNewBlueprint(Blueprint bp){
         
@@ -51,6 +59,12 @@ public class BlueprintsServices {
      * @throws BlueprintNotFoundException if the given author doesn't exist
      */
     public Set<Blueprint> getBlueprintsByAuthor(String author) throws BlueprintNotFoundException{
+    	/*final Map<Tuple<String,String>,Blueprint> blueprints = memo.getHash();
+    	for(int i = 0; i < blueprints.size(); i++) {
+    		if() {
+    			
+    		}
+    	}*/
         throw new UnsupportedOperationException("Not supported yet."); 
     }
     
