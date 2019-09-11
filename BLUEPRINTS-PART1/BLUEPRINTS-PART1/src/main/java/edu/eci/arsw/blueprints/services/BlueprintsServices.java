@@ -12,6 +12,7 @@ import edu.eci.arsw.blueprints.persistence.BlueprintsPersistence;
 import edu.eci.arsw.blueprints.persistence.impl.InMemoryBlueprintPersistence;
 import edu.eci.arsw.blueprints.persistence.impl.Tuple;
 
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -49,9 +50,9 @@ public class BlueprintsServices {
     public Blueprint getBlueprint(String author,String name) throws BlueprintNotFoundException{
     	Blueprint bp = null;
     	final Map<Tuple<String,String>,Blueprint> blueprints = memo.getHash();
-    	for (int i = 0; i < blueprints.size(); i++) {
-    		if(blueprints.get(i).getAuthor().equals(author) && blueprints.get(i).getName().equals(name)) {
-				bp = blueprints.get(i);
+    	for (Blueprint b: blueprints.values()) {
+    		if(b.getAuthor().equals(author) && b.getName().equals(name)) {
+				bp = b;
 			}
     	}
 		return bp;
@@ -64,16 +65,14 @@ public class BlueprintsServices {
      * @throws BlueprintNotFoundException if the given author doesn't exist
      */
     public Set<Blueprint> getBlueprintsByAuthor(String author) throws BlueprintNotFoundException{
-    	//CREAR SET
+    	Set blueprintsReturn = new HashSet<Blueprint>();
     	final Map<Tuple<String,String>,Blueprint> blueprints = memo.getHash();
-    	for(int i = 0; i < blueprints.size(); i++) {
-    		if(blueprints.get(i).getAuthor().equals(author)) {
-    			//AGREGAR AL SET
+    	for(Blueprint b : blueprints.values()) {
+    		if(b.getAuthor().equals(author)) {
+    			blueprintsReturn.add(b);
     		}
     	}
-    	
-    	//RETORNAR SET
-        throw new UnsupportedOperationException("Not supported yet."); 
+    	return blueprintsReturn;
     }
     
 }
