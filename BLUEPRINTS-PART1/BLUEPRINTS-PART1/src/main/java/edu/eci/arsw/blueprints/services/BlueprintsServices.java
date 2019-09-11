@@ -8,10 +8,12 @@ package edu.eci.arsw.blueprints.services;
 import edu.eci.arsw.blueprints.model.Blueprint;
 import edu.eci.arsw.blueprints.model.Point;
 import edu.eci.arsw.blueprints.persistence.BlueprintNotFoundException;
+import edu.eci.arsw.blueprints.persistence.BlueprintPersistenceException;
 import edu.eci.arsw.blueprints.persistence.BlueprintsPersistence;
 import edu.eci.arsw.blueprints.persistence.impl.InMemoryBlueprintPersistence;
 import edu.eci.arsw.blueprints.persistence.impl.Tuple;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -25,19 +27,21 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class BlueprintsServices {
-   
-    @Autowired
-    BlueprintsPersistence bpp=null;
     
     @Autowired
-    InMemoryBlueprintPersistence memo = null;
+    InMemoryBlueprintPersistence memo;
     
-    public void addNewBlueprint(Blueprint bp){
-        
+    public void addNewBlueprint(Blueprint bp) throws BlueprintPersistenceException{
+        memo.saveBlueprint(bp);
     }
     
     public Set<Blueprint> getAllBlueprints(){
-        return null;
+    	ArrayList<Blueprint> a = (ArrayList<Blueprint>) memo.getHash().values();
+    	Set<Blueprint> s = new HashSet<Blueprint>();
+    	for(int i = 0; i < a.size(); i++) {
+    		s.add(a.get(i));
+    	}
+    	return s;
     }
     
     /**
